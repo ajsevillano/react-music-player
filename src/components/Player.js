@@ -8,12 +8,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useRef } from 'react';
 
-const Player = ({ currentSong }) => {
+const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   //Ref to the audio html selector
   const audioRef = useRef(null);
   //Event Handler
   const playSongHandler = () => {
-    audioRef.current.play();
+    isPlaying ? audioRef.current.pause() : audioRef.current.play();
+    setIsPlaying(!isPlaying);
   };
   return (
     <div className="player">
