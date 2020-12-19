@@ -26,6 +26,11 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       duration: duration,
     });
   };
+  const dragHandler = (e) => {
+    const timeValue = e.target.value;
+    audioRef.current.currentTime = e.target.value;
+    setSongInfo({ ...songInfo, currentTime: timeValue });
+  };
 
   //Aux function
   const formatTime = (time) => {
@@ -36,8 +41,8 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 
   //State for the song info
   const [songInfo, setSongInfo] = useState({
-    currentTime: null,
-    duration: null,
+    currentTime: 0,
+    duration: 0,
   });
 
   return (
@@ -48,6 +53,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
           min={0}
           max={songInfo.duration}
           value={songInfo.currentTime}
+          onChange={dragHandler}
           type="range"
         />
         <p>{formatTime(songInfo.duration)}</p>
