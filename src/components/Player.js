@@ -7,7 +7,6 @@ import {
   faPlay,
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 
 const Player = ({
   audioRef,
@@ -42,7 +41,7 @@ const Player = ({
         <p>{formatTime(songInfo.currentTime)}</p>
         <input
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.currentTime}
           onChange={dragHandler}
           type="range"
