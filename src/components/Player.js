@@ -1,3 +1,7 @@
+//UseEffect
+import React, { useEffect } from 'react';
+import { playAudio } from '../utils';
+
 //Import FontAwesome component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //Import FontAwesome actual icons
@@ -17,7 +21,27 @@ const Player = ({
   songInfo,
   songs,
   setCurrentSong,
+  setSongs,
 }) => {
+  // UseEffect
+  useEffect(() => {
+    //Add active state
+    const newSongs = songs.map((song) => {
+      if (song.id === currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
+
   //Events Handlers
   const playSongHandler = () => {
     isPlaying ? audioRef.current.pause() : audioRef.current.play();
@@ -42,6 +66,7 @@ const Player = ({
       }
       setCurrentSong(songs[currentIndex - (1 % songs.length)]);
     }
+    playAudio(isPlaying, audioRef);
   };
 
   //Aux function
@@ -62,7 +87,7 @@ const Player = ({
           onChange={dragHandler}
           type="range"
         />
-        <p>{formatTime(songInfo.duration)}</p>
+        <p>{songInfo.duration ? formatTime(songInfo.duration) : '0:00'}</p>
       </div>
       <div className="play-control">
         <FontAwesomeIcon
