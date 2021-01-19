@@ -6,7 +6,7 @@ import { faMusic } from '@fortawesome/free-solid-svg-icons';
 const Nav = ({ libraryStatus, setLibraryStatus }) => {
   return (
     <nav>
-      <h1>Music Player</h1>
+      <h1>React Music Player</h1>
       <button
         onClick={() => {
           setLibraryStatus(!libraryStatus);
