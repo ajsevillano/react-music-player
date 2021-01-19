@@ -18,6 +18,14 @@ nav {
   }
 }
 
+.logo {
+  display: flex;
+  img {
+    width: 30px;
+    margin-right: 10px;
+  }
+}
+
 //Mobile styles
 @media screen and (max-width: 768px) {
   nav {
