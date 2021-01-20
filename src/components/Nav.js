@@ -10,7 +10,7 @@ const Nav = ({ libraryStatus, setLibraryStatus }) => {
     <nav>
       <div className="logo">
         <img src={logo} alt="Logo" />
-        <h1>React Music Player</h1>
+        <h1>Lo-Fi Player</h1>
       </div>
       <button
         onClick={() => {
