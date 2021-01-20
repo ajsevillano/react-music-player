@@ -91,12 +91,14 @@ const Player = ({
           className="track"
         >
           <input
+            id="time-controller"
             min={0}
             max={songInfo.duration || 0}
             value={songInfo.currentTime}
             onChange={dragHandler}
             type="range"
           />
+          <label for="time-controller">Drag to move forward or backward </label>
           <div style={trackAnim} className="animate-track"></div>
         </div>
         <p>{songInfo.duration ? formatTime(songInfo.duration) : '0:00'}</p>
