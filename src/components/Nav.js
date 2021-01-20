@@ -2,12 +2,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //Import FontAwesome actual icons
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
+//Import Logo
+import logo from '../assets/images/logo.svg';
 
 const Nav = ({ libraryStatus, setLibraryStatus }) => {
   return (
     <nav>
       <div className="logo">
-        <img src={process.env.PUBLIC_URL + '/logo.svg '} alt="Logo" />
+        <img src={logo} alt="Logo" />
         <h1>React Music Player</h1>
       </div>
       <button
