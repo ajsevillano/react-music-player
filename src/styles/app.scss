@@ -1,7 +1,7 @@
-@import './player';
-@import './song';
-@import './library';
-@import './nav';
+@use './player';
+@use './song';
+@use './library';
+@use './nav';
 
 * {
   margin: 0;
