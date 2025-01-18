@@ -1,12 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
+
+const baseAudioUrl = 'https://stream.chillhop.com/mp3';
+const baseCoverUrl = 'https://cms.chillhop.com/media';
+
 function chillHop() {
   return [
     {
       name: 'Spiral',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/2a048a5780723e66fff64c3a60814ea64761284f-1024x1024.jpg',
+        `${baseCoverUrl}/6825/square2a048a5780723e66fff64c3a60814ea64761284f.jpg`,
       artist: 'Monma, Misha',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=8462',
+      audio: `${baseAudioUrl}/8462`,
       color: ['#EF8EA9', '#401f37'],
       id: uuidv4(),
       active: true,
@@ -14,29 +18,29 @@ function chillHop() {
     {
       name: 'Today Feels Like Everyday',
       cover:
-        'https://chillhop.com/wp-content/uploads/2021/01/6b1bb8736ee3e972747bc11f312e31cf7f5823e4-1024x1024.jpg',
+        `${baseCoverUrl}/11319/square08cbb0848f669e1bd8b5a5152c4b7d20edf1b499.jpg`,
       artist: 'Mama Aiuto',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=12125',
+      audio: `${baseAudioUrl}/12128`,
       color: ['#1b4f5d', '#58211e'],
       id: uuidv4(),
       active: false,
     },
     {
-      name: 'Daylight',
+      name: 'Celebrations',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg',
-      artist: 'Aiguille',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=9272',
-      color: ['#EF8EA9', '#422039'],
+        `${baseCoverUrl}/3145/square0b2270e2865d7c9fb7ce840263bc6fb93f64f812.jpg`,
+      artist: 'Mr. Käfer',
+      audio: `${baseAudioUrl}/9497`,
+      color: ['#EF8EA9', '#229585'],
       id: uuidv4(),
       active: false,
     },
     {
       name: 'Under the City Stars',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/09/0255e8b8c74c90d4a27c594b3452b2daafae608d-1024x1024.jpg',
+        `${baseCoverUrl}/10010/square0255e8b8c74c90d4a27c594b3452b2daafae608d.jpg`,
       artist: 'Aso, Middle School, Aviino',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=10074',
+      audio: `${baseAudioUrl}/10074`,
       color: ['#205950', '#2ab3bf'],
       id: uuidv4(),
       active: false,
@@ -44,29 +48,29 @@ function chillHop() {
     {
       name: 'Keep Going',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg',
+        `${baseCoverUrl}/78126/squarecdc41272fb9e5ba0a6fcfd39b87b8a2e776a635c.jpg`,
       artist: 'Swørn',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=9222',
-      color: ['#CD607D', '#c94043'],
+      audio: `${baseAudioUrl}/9222`,
+      color: ['#ACDEF9', '#F2BC61'],
       id: uuidv4(),
       active: false,
     },
     {
       name: 'Going Back',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/10/737bb830d34592344eb4a2a1d2c006cdbfc811d9-1024x1024.jpg',
+        `${baseCoverUrl}/10524/square0e5bb63f838ff92eeac142aae944e9f678df13c9.jpg`,
       artist: 'Swørn',
       id: uuidv4(),
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=10310',
-      color: ['#365663', '#2b2a2f'],
+      audio: `${baseAudioUrl}/10310`,
+      color: ['#365663', '#CAB0C9'],
       active: false,
     },
     {
       name: 'Nightfall',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg',
+        `${baseCoverUrl}/6799/squareef95e219a44869318b7806e9f0f794a1f9c451e4.jpg`,
       artist: 'Aiguille',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=9148',
+      audio: `${baseAudioUrl}/9148`,
       color: ['#EF8EA9', '#ab417f'],
       id: uuidv4(),
       active: false,
@@ -74,9 +78,9 @@ function chillHop() {
     {
       name: 'Reflection',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg',
+        `${baseCoverUrl}/6816/squareff35dede32321a8aa0953809812941bcf8a6bd35.jpg`,
       artist: 'Swørn',
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=9228',
+      audio: `${baseAudioUrl}/9228`,
       color: ['#CD607D', '#c94043'],
       id: uuidv4(),
       active: false,
@@ -84,20 +88,20 @@ function chillHop() {
     {
       name: 'Far Away',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/bc9a7af2ad67de703541c2c7a91e3df74ab494c0-1024x1024.jpg',
+        `${baseCoverUrl}/688/squarebc9a7af2ad67de703541c2c7a91e3df74ab494c0.jpg`,
       artist: 'Swørn',
       id: uuidv4(),
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=7951',
+      audio: `${baseAudioUrl}/7951`,
       color: ['#da8489', '#3e3550'],
       active: false,
     },
     {
       name: 'Pick Me Up',
       cover:
-        'https://chillhop.com/wp-content/uploads/2020/07/bc9a7af2ad67de703541c2c7a91e3df74ab494c0-1024x1024.jpg',
+        `${baseCoverUrl}/5847/square260a909fca701bbb7593f5f8f9cff9508cca2856.jpg`,
       artist: 'Aso, Middle School, Aviino',
       id: uuidv4(),
-      audio: 'https://mp3.chillhop.com/serve.php/?mp3=7949',
+      audio: `${baseAudioUrl}/7949`,
       color: ['#d84c57', '#4db9c6'],
       active: false,
     },
