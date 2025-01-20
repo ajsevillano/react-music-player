@@ -1,23 +1,8 @@
 import LibrarySong from './LibrarySong';
 
-interface Song {
-  id: string;
-  name: string;
-  artist: string;
-  cover: string;
-  active: boolean;
-}
 
-interface LibraryProps {
-  songs: Song[];
-  setCurrentSong: (song: Song) => void;
-  audioRef: React.RefObject<HTMLAudioElement>;
-  isPlaying: boolean;
-  setSongs: (songs: Song[]) => void;
-  libraryStatus: boolean;
-}
 
-const Library: React.FC<LibraryProps> = ({
+const Library: React.FC<any> = ({
   songs,
   setCurrentSong,
   audioRef,
@@ -29,7 +14,7 @@ const Library: React.FC<LibraryProps> = ({
     <div className={`library ${libraryStatus ? 'active-library' : ''}`}>
       <h2>Library</h2>
       <div className="library-songs-map">
-        {songs.map((song: Song) => (
+        {songs.map((song: any) => (
           <LibrarySong
             songs={songs}
             setCurrentSong={setCurrentSong}

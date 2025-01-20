@@ -11,9 +11,29 @@ import './styles/app.scss';
 import data from './data';
 import { useState, useRef } from 'react';
 
+//Inteface
+interface TimeUpdateHandleProps {
+  target: TargetProps;
+}
+
+interface TargetProps {
+  currentTime: number;
+  duration: number;
+}
+
+interface SongProps {
+  id: string;
+  name: string;
+  cover: string;
+  artist: string;
+  audio: string;
+  color: string[];
+  active: boolean;
+}
+
 function App() {
   //Ref to the audio html selector
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   //States
   const [songs, setSongs] = useState(data());
@@ -27,7 +47,7 @@ function App() {
   const [libraryStatus, setLibraryStatus] = useState(false);
 
   //Function to update the time
-  const timeUpdateHandler = (e) => {
+  const timeUpdateHandler = (e:TimeUpdateHandleProps ) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
 
@@ -43,7 +63,7 @@ function App() {
     });
   };
 
-  const activeLibraryHandler = (nextPrev) => {
+  const activeLibraryHandler = (nextPrev:SongProps ) => {
     const newSongs = songs.map((song) => {
       if (song.id === nextPrev.id) {
         return {
@@ -61,11 +81,11 @@ function App() {
   };
 
   const songEndHandler = async () => {
-    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     const nextSong = songs[(currentIndex + 1) % songs.length];
-    await setCurrentSong(nextSong);
+    setCurrentSong(nextSong);
     activeLibraryHandler(nextSong);
-    if (isPlaying) audioRef.current.play();
+    if (isPlaying && audioRef.current) audioRef.current.play();
   };
 
   return (

@@ -4,8 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 //Import Logo
 import logo from '../assets/images/logo.svg';
+// Interfaces
+interface NavProps {
+  libraryStatus: boolean;
+  setLibraryStatus: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const Nav = ({ libraryStatus, setLibraryStatus }) => {
+const Nav = ({ libraryStatus, setLibraryStatus }:NavProps) => {
   return (
     <nav>
       <div className="logo">
