@@ -1,13 +1,11 @@
+import { SongObjetProps } from "../GlobalTypes";
 interface SongProps {
-  currentSong: {
-    cover: string;
-    name: string;
-    artist: string;
-    color: string[];
-  };
+  currentSong: SongObjetProps;
 }
 
+
 const Song = ({ currentSong }: SongProps) => {
+
   return (
     <div className="song-container">
       <img src={currentSong.cover} alt={currentSong.name} />

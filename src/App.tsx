@@ -3,17 +3,17 @@ import Song from './components/Song';
 import Player from './components/Player';
 import Library from './components/Library';
 import Nav from './components/Nav';
-
 //Styles
 import './styles/app.scss';
-
 //Data
 import data from './data';
 import { useState, useRef } from 'react';
+import { SongObjetProps } from './GlobalTypes';
+
 
 function App() {
   //Ref to the audio html selector
-  const audioRef = useRef(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   //States
   const [songs, setSongs] = useState(data());
@@ -27,9 +27,9 @@ function App() {
   const [libraryStatus, setLibraryStatus] = useState(false);
 
   //Function to update the time
-  const timeUpdateHandler = (e) => {
-    const current = e.target.currentTime;
-    const duration = e.target.duration;
+  const timeUpdateHandler = (e: React.SyntheticEvent<HTMLAudioElement> ) => {
+    const current = e.currentTarget.currentTime;
+    const duration = e.currentTarget.duration;
 
     //Calculate percentage
     const roundedCurrent = Math.round(current);
@@ -43,7 +43,7 @@ function App() {
     });
   };
 
-  const activeLibraryHandler = (nextPrev) => {
+  const activeLibraryHandler = (nextPrev:SongObjetProps ) => {
     const newSongs = songs.map((song) => {
       if (song.id === nextPrev.id) {
         return {
@@ -61,13 +61,19 @@ function App() {
   };
 
   const songEndHandler = async () => {
-    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     const nextSong = songs[(currentIndex + 1) % songs.length];
-    await setCurrentSong(nextSong);
+    setCurrentSong(nextSong);
     activeLibraryHandler(nextSong);
-    if (isPlaying) audioRef.current.play();
+    if (audioRef.current) {
+      audioRef.current.load();
+      audioRef.current.oncanplaythrough = () => {
+        if (isPlaying) {
+          audioRef.current?.play();
+        }
+      };
+    }
   };
-
   return (
     <div className={`App ${libraryStatus ? 'library-active' : ''} `}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />

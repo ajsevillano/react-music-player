@@ -7,6 +7,24 @@ import {
   faPlay,
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
+import { LibraryProps, SongObjetProps } from '../GlobalTypes';
+import { useEffect } from 'react';
+
+// Interface
+interface PlayerProps extends LibraryProps {
+  currentSong: SongObjetProps;
+setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+songInfo: SongInfoProps;
+setSongInfo: React.Dispatch<React.SetStateAction<SongInfoProps>>;
+}
+
+interface SongInfoProps {
+  currentTime: number;
+  duration: number;
+  animationPercentage: number;
+}
+
+type SkipDirection = 'skip-forward' | 'skip-back';
 
 const Player = ({
   audioRef,
@@ -18,8 +36,16 @@ const Player = ({
   songs,
   setCurrentSong,
   setSongs,
-}) => {
-  const activeLibraryHandler = (nextPrev) => {
+}:PlayerProps) => {
+
+  useEffect(() => {
+    if (isPlaying && audioRef.current) {
+      audioRef.current.play();
+    }
+  }, [audioRef, currentSong, isPlaying]); 
+
+  const activeLibraryHandler = (nextPrev: SongObjetProps) => {
+
     //Add active state
     const newSongs = songs.map((song) => {
       if (song.id === nextPrev.id) {
@@ -39,33 +65,39 @@ const Player = ({
 
   //Events Handlers
   const playSongHandler = () => {
-    isPlaying ? audioRef.current.pause() : audioRef.current.play();
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+    }
     setIsPlaying(!isPlaying);
   };
 
-  const dragHandler = (e) => {
-    const timeValue = e.target.value;
-    audioRef.current.currentTime = e.target.value;
+  const dragHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const timeValue = parseFloat(e.target.value);
+   
+    if (audioRef.current) {
+      audioRef.current.currentTime = timeValue;
+    }
     setSongInfo({ ...songInfo, currentTime: timeValue });
   };
 
-  const skipTrackHandler = async (direction) => {
-    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+  const skipTrackHandler = (direction: SkipDirection) => {
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    let newIndex;
+  
     if (direction === 'skip-forward') {
-      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-      activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
+      newIndex = (currentIndex + 1) % songs.length;
     }
     if (direction === 'skip-back') {
-      if ((currentIndex - 1) % songs.length === -1) {
-        await setCurrentSong(songs[songs.length - 1]);
-        activeLibraryHandler(songs[songs.length - 1]);
-        if (isPlaying) audioRef.current.play();
-        return;
-      }
-      await setCurrentSong(songs[currentIndex - (1 % songs.length)]);
-      activeLibraryHandler(songs[currentIndex - (1 % songs.length)]);
+      newIndex = (currentIndex - 1 + songs.length) % songs.length;
     }
-    if (isPlaying) audioRef.current.play();
+  
+    const nextSong = songs[newIndex ?? 0];
+    setCurrentSong(nextSong); 
+    activeLibraryHandler(nextSong);
   };
 
   //Add the styles to the player bar
@@ -74,7 +106,7 @@ const Player = ({
   };
 
   //Aux function
-  const formatTime = (time) => {
+  const formatTime = (time:number) => {
     return (
       Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
     );
@@ -98,7 +130,7 @@ const Player = ({
             onChange={dragHandler}
             type="range"
           />
-          <label for="time-controller">Drag to move forward or backward </label>
+          <label htmlFor="time-controller">Drag to move forward or backward </label>
           <div style={trackAnim} className="animate-track"></div>
         </div>
         <p>{songInfo.duration ? formatTime(songInfo.duration) : '0:00'}</p>

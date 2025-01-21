@@ -1,24 +1,11 @@
-import { Dispatch, SetStateAction } from 'react';
+import { SongObjetProps,LibraryProps } from '../GlobalTypes';
 
-interface Song {
+interface LibrarySongProps extends LibraryProps {
+  song: SongObjetProps;
   id: string;
-  name: string;
-  artist: string;
-  cover: string;
-  active: boolean;
 }
 
-interface LibrarySongProps {
-  song: Song;
-  songs: Song[];
-  setCurrentSong: Dispatch<SetStateAction<Song>>;
-  id: string;
-  audioRef: React.RefObject<HTMLAudioElement>;
-  isPlaying: boolean;
-  setSongs: Dispatch<SetStateAction<Song[]>>;
-}
-
-const LibrarySong: React.FC<LibrarySongProps> = ({
+const LibrarySong = ({
   song,
   songs,
   setCurrentSong,
@@ -26,7 +13,8 @@ const LibrarySong: React.FC<LibrarySongProps> = ({
   audioRef,
   isPlaying,
   setSongs,
-}) => {
+}:LibrarySongProps) => {
+
   const songSelectHandler = async () => {
     await setCurrentSong(song);
     //Add active state
