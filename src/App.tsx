@@ -3,24 +3,14 @@ import Song from './components/Song';
 import Player from './components/Player';
 import Library from './components/Library';
 import Nav from './components/Nav';
-
 //Styles
 import './styles/app.scss';
-
 //Data
 import data from './data';
 import { useState, useRef } from 'react';
 
-//Inteface
-interface TimeUpdateHandleProps {
-  target: TargetProps;
-}
 
-interface TargetProps {
-  currentTime: number;
-  duration: number;
-}
-
+// Interface
 interface SongProps {
   id: string;
   name: string;
@@ -47,9 +37,9 @@ function App() {
   const [libraryStatus, setLibraryStatus] = useState(false);
 
   //Function to update the time
-  const timeUpdateHandler = (e:TimeUpdateHandleProps ) => {
-    const current = e.target.currentTime;
-    const duration = e.target.duration;
+  const timeUpdateHandler = (e: React.SyntheticEvent<HTMLAudioElement> ) => {
+    const current = e.currentTarget.currentTime;
+    const duration = e.currentTarget.duration;
 
     //Calculate percentage
     const roundedCurrent = Math.round(current);
@@ -85,9 +75,15 @@ function App() {
     const nextSong = songs[(currentIndex + 1) % songs.length];
     setCurrentSong(nextSong);
     activeLibraryHandler(nextSong);
-    if (isPlaying && audioRef.current) audioRef.current.play();
+    if (audioRef.current) {
+      audioRef.current.load();
+      audioRef.current.oncanplaythrough = () => {
+        if (isPlaying) {
+          audioRef.current?.play();
+        }
+      };
+    }
   };
-
   return (
     <div className={`App ${libraryStatus ? 'library-active' : ''} `}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
