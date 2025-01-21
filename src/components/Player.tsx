@@ -7,19 +7,15 @@ import {
   faPlay,
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
-import { SongObjetProps } from '../GlobalTypes';
+import { LibraryProps, SongObjetProps } from '../GlobalTypes';
 import { useEffect } from 'react';
 
-interface PlayerProps {
-  songs: SongObjetProps[];
+// Interface
+interface PlayerProps extends LibraryProps {
   currentSong: SongObjetProps;
-  isPlaying: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-  audioRef: React.RefObject<HTMLAudioElement>;
-  songInfo: SongInfoProps;
-  setSongInfo: React.Dispatch<React.SetStateAction<SongInfoProps>>;
-  setCurrentSong: React.Dispatch<React.SetStateAction<SongObjetProps>>;
-  setSongs: React.Dispatch<React.SetStateAction<SongObjetProps[]>>;
+setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+songInfo: SongInfoProps;
+setSongInfo: React.Dispatch<React.SetStateAction<SongInfoProps>>;
 }
 
 interface SongInfoProps {

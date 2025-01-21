@@ -7,3 +7,12 @@ export interface SongObjetProps {
   id: string;
   name: string;
 }
+
+export interface LibraryProps {
+  songs: SongObjetProps[];
+  setCurrentSong: React.Dispatch<React.SetStateAction<SongObjetProps>>;
+  audioRef: React.RefObject<HTMLAudioElement>;
+  isPlaying: boolean;
+  setSongs: React.Dispatch<React.SetStateAction<SongObjetProps[]>>;
+}
+

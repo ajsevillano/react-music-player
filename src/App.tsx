@@ -8,18 +8,8 @@ import './styles/app.scss';
 //Data
 import data from './data';
 import { useState, useRef } from 'react';
+import { SongObjetProps } from './GlobalTypes';
 
-
-// Interface
-interface SongProps {
-  id: string;
-  name: string;
-  cover: string;
-  artist: string;
-  audio: string;
-  color: string[];
-  active: boolean;
-}
 
 function App() {
   //Ref to the audio html selector
@@ -53,7 +43,7 @@ function App() {
     });
   };
 
-  const activeLibraryHandler = (nextPrev:SongProps ) => {
+  const activeLibraryHandler = (nextPrev:SongObjetProps ) => {
     const newSongs = songs.map((song) => {
       if (song.id === nextPrev.id) {
         return {
