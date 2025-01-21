@@ -8,6 +8,7 @@ import {
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
 import { SongObjetProps } from '../GlobalTypes';
+import { useEffect } from 'react';
 
 interface PlayerProps {
   songs: SongObjetProps[];
@@ -41,7 +42,11 @@ const Player = ({
   setSongs,
 }:PlayerProps) => {
 
-
+  useEffect(() => {
+    if (isPlaying && audioRef.current) {
+      audioRef.current.play();
+    }
+  }, [audioRef, currentSong, isPlaying]); 
 
   const activeLibraryHandler = (nextPrev: SongObjetProps) => {
 
@@ -83,24 +88,20 @@ const Player = ({
     setSongInfo({ ...songInfo, currentTime: timeValue });
   };
 
-  const skipTrackHandler = async (direction:SkipDirection) => {
+  const skipTrackHandler = (direction: SkipDirection) => {
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-
+    let newIndex;
+  
     if (direction === 'skip-forward') {
-      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-      activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
+      newIndex = (currentIndex + 1) % songs.length;
     }
     if (direction === 'skip-back') {
-      if ((currentIndex - 1) % songs.length === -1) {
-        await setCurrentSong(songs[songs.length - 1]);
-        activeLibraryHandler(songs[songs.length - 1]);
-        if (isPlaying && audioRef.current) audioRef.current.play();
-        return;
-      }
-      await setCurrentSong(songs[currentIndex - (1 % songs.length)]);
-      activeLibraryHandler(songs[currentIndex - (1 % songs.length)]);
+      newIndex = (currentIndex - 1 + songs.length) % songs.length;
     }
-    if (isPlaying && audioRef.current) audioRef.current.play();
+  
+    const nextSong = songs[newIndex ?? 0];
+    setCurrentSong(nextSong); 
+    activeLibraryHandler(nextSong);
   };
 
   //Add the styles to the player bar
