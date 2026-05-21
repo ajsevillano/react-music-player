@@ -11,11 +11,11 @@
 
 ## Features
 
-- **Curated lo-fi tracks** streamed live from the Chillhop catalog
-- **Full playback controls** — play/pause, skip forward & backward
-- **Seekable progress bar** with a unique color gradient per track
-- **Collapsible library sidebar** to browse all available tracks
-- **Auto-advance** to the next track when a song ends
+- 🎵 Curated lo-fi tracks streamed live from the Chillhop catalog
+- ⏯️ Full playback controls — play, pause, skip forward and backward
+- 🎨 Seekable progress bar with a unique color gradient per track
+- 📚 Collapsible library sidebar to browse all available tracks
+- ⏭️ Auto-advances to the next track when a song ends
 
 ## Tech Stack
 
