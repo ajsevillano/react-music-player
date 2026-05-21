@@ -13,12 +13,12 @@
 
 ## About
 
-Built as a hands-on exercise to practice React and TypeScript — specifically component architecture, custom hooks, and state management. The audio UI was a good excuse to explore SCSS theming and per-track dynamic styling.
+Built as a hands-on exercise to practice React and TypeScript, focusing on component architecture, custom hooks, and state management. The audio UI was a good excuse to explore SCSS theming and per-track dynamic styling.
 
 ## Features
 
 - 🎵 Curated lo-fi tracks streamed live from the Chillhop catalog
-- ⏯️ Full playback controls — play, pause, skip forward and backward
+- ⏯️ Full playback controls: play, pause, skip forward and backward
 - 🎨 Seekable progress bar with a unique color gradient per track
 - 📚 Collapsible library sidebar to browse all available tracks
 - ⏭️ Auto-advances to the next track when a song ends
