@@ -1,6 +1,6 @@
 # Lo-Fi Music Player
 
-> A beautiful, minimalist music player that streams curated lo-fi tracks directly from the [Chillhop](https://chillhop.com) catalog — built with React & TypeScript.
+> A minimalist lo-fi music player built with React and TypeScript. Streams curated tracks directly from the [Chillhop](https://chillhop.com) catalog.
 
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)
