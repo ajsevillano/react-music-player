@@ -7,7 +7,13 @@
 ![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat&logo=vite&logoColor=white)
 ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=flat&logo=sass&logoColor=white)
 
+🔗 **[Live Demo](https://ajs-react-music-player.netlify.app/)**
+
 ![Demo](assets/demo.gif)
+
+## About
+
+Built as a hands-on exercise to practice React and TypeScript — specifically component architecture, custom hooks, and state management. The audio UI was a good excuse to explore SCSS theming and per-track dynamic styling.
 
 ## Features
 
@@ -29,28 +35,16 @@
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18+
-- npm
-
-### Installation
-
 ```bash
-# Clone the repository
 git clone https://github.com/ajsevillano/react-music-player.git
 cd react-music-player
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Available Scripts
+## Scripts
 
 | Command | Description |
 |---------|-------------|
@@ -69,6 +63,14 @@ src/
 ├── styles/           # SCSS stylesheets
 └── App.tsx           # Root component
 ```
+
+## Disclaimer
+
+This is a personal/educational project. All audio content belongs to [Chillhop Music](https://chillhop.com) and their respective artists.
+
+## Contributing
+
+Found a bug or have an idea? Feel free to open an issue.
 
 ## License
 
